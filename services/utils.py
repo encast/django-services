@@ -5,9 +5,11 @@ import simplejson
 import sys
 import types
 import urllib
-import urllib2
+import urllib3
 import xml.sax.handler
 import math
+import json
+import traceback
 from decimal import Decimal
 
 from django.db import transaction
@@ -112,17 +114,16 @@ def generic_exception_handler(request, exception):
     from services.view import BaseView
     response = BaseView(request=request)
     _, _, tb = sys.exc_info()
-    import traceback
     frames = traceback.extract_tb(tb)
-    frame_template = "File %s, line %s, in %s\n  %s\n"
+    frame_template = "File {filename}, line {lineno}, in {name}\n  {line}\n{error}"
     error_header = '----%s----\n' % datetime.datetime.utcnow()
     error = ''
 
     for frame in frames:
-        error += frame_template % frame
+        error = frame_template.format(filename=frame.filename, lineno=frame.lineno, name=frame.name, line=frame.line,error=error)
 
-    if len(str(exception.message)) < 2000:
-        error += str(exception.message)
+    if len(str(exception)) < 2000:
+        error += str(exception)
 
     error += '\n'
 
@@ -132,7 +133,7 @@ def generic_exception_handler(request, exception):
     try:
         transaction.rollback()
     except Exception as e:
-        print "Error rolling back: " + e.message
+        print("Error rolling back: ", e)
 
     return response.serialize()
 
