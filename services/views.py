@@ -45,7 +45,7 @@ class BaseView(object):
         if status:
             self._status = status
 
-        if isinstance(errors, basestring):
+        if isinstance(errors, str):
             # just a single error
             self._errors.append(errors)
             return self
@@ -88,7 +88,7 @@ class BaseView(object):
                'method': request.method,
                'body': request.raw_post_body}
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             ret['user_id'] = request.user.get_profile().id
 
         ret['body_summary'] = self.get_body_summary(request)

@@ -44,7 +44,7 @@ class Payload(dict):
                         ret[field] = getattr(inst, field, "")
 
         # finally, apply our ignored and allowed fields filters
-        for key, value in ret.iteritems():
+        for key, value in ret.items():
             if key in self.ignored_fields:
                 continue
             if self.allowed_fields and key not in self.allowed_fields:
@@ -63,7 +63,7 @@ class Payload(dict):
             if isinstance(inst, dict):
                 return self.payload
 
-        for key, value in self.iteritems():
+        for key, value in self.items():
             setattr(inst, key, value)
         return inst
 
@@ -79,7 +79,7 @@ class Payload(dict):
         ret = self.create_test_model_payload()
 
         if payload is not None:
-            return {k: v for k, v in payload.iteritems() if k in ret.keys()}
+            return {k: v for k, v in payload.items() if k in ret.keys()}
 
         return ret
 

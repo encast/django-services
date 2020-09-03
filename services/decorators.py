@@ -54,7 +54,7 @@ def superuser_only(decorated_function):
             return response.add_errors("Login required method called without request object", status=500)
 
         response = BaseView(request=request)
-        if request.user.is_authenticated() and request.user.is_superuser:
+        if request.user.is_authenticated and request.user.is_superuser:
             return decorated_function(*args, **kwargs)
 
         return response.add_errors('401 -- Unauthorized', status=401)

@@ -63,7 +63,7 @@ class ErrorReportController(BaseController):
             request_id = request.POST.get('request_id')
             when = utils.default_time_parse(request.POST.get('when', ''))
             send_mail("Error Report", report, 'ops@canwecode.com', [a[1] for a in settings.ADMINS], fail_silently=True)
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 profile = request.user.get_profile()
                 report += '\n%s %s' % (profile.name, profile.id)
                 ErrorReport.objects.create(report=report, request_id=request_id, when=when,
