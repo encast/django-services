@@ -165,7 +165,7 @@ def default_time_parse(time_string):
     formats = ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%d %H:%M:%S.%f",
                "%Y-%m-%d", "%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M:%S.%fZ")
 
-    if not time_string or not isinstance(time_string, basestring):
+    if not time_string or not isinstance(time_string, str):
         return None
 
     for fmt in formats:

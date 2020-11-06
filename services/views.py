@@ -58,7 +58,7 @@ class BaseView(object):
         raise TypeError("Argument 'errors' must be of type 'string' or 'list'")
 
     def add_messages(self, messages):
-        if isinstance(messages, basestring):
+        if isinstance(messages, str):
             # just a single message
             self._messages.append(messages)
             return
