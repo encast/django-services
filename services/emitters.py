@@ -176,7 +176,7 @@ class Emitter(object):
 
                     # sets can be negated.
                     for exclude in exclude_fields:
-                        if isinstance(exclude, basestring):
+                        if isinstance(exclude, str):
                             get_fields.discard(exclude)
 
                         elif isinstance(exclude, re._pattern_type):

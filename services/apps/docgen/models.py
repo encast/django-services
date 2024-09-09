@@ -38,7 +38,7 @@ class StoredHandlerRequest(models.Model):
 class StoredHttpParam(models.Model):
     name = models.CharField(max_length=32)
     value = models.TextField(default='')
-    request = models.ForeignKey(StoredHandlerRequest)
+    request = models.ForeignKey(StoredHandlerRequest, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return "%s %s: %s=%s" % (self.request.method, self.request.path, self.name, self.value)

@@ -34,8 +34,8 @@ class DataViewField(DataField):
 class TextDataField(DataField):
 
     def validate_type(self, value):
-        if not isinstance(value, basestring):
-            raise TypeError("TextDataField '%s' must be of type 'basestring'" % self._name)
+        if not isinstance(value, str):
+            raise TypeError("TextDataField '%s' must be of type 'str'" % self._name)
         return value
 
 
@@ -66,7 +66,7 @@ class BooleanDataField(DataField):
 class DateTimeDataField(DataField):
 
     def validate_type(self, value):
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             value = default_time_parse(value)
         if not isinstance(value, datetime):
             raise TypeError("DateTimeDataField '%s' must be of type 'datetime'" % self._name)

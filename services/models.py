@@ -58,7 +58,7 @@ class BaseModel(models.Model, BaseModelMixin):
             if isinstance(field, (TextField, ForeignKey, JSONField)):
                 continue
             value = getattr(self, field_name)
-            if isinstance(value, unicode):
+            if isinstance(value, str):
                 value = value.encode('utf-8')
             d.append(value)
 

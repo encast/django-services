@@ -47,7 +47,7 @@ class BaseController(object):
         auth_result = self.auth_check(request, mapped_method)
 
         if auth_result:
-            return auth_result
+           return auth_result
 
         try:
             if self.has_body_param(mapped_method):
@@ -80,7 +80,7 @@ class BaseController(object):
         try:
             response = mapped_method(*args, **kwargs)
 
-        except Exception, e:
+        except Exception as e:
             return self.error_handler(e, request, mapped_method)
 
         # Allow mapped_method to respond with a view and override ours
@@ -120,7 +120,7 @@ class BaseController(object):
             try:
                 request.payload = json.loads(request.body)
             except Exception as e:
-                raise Exception('Invalid JSON data ' + e.message)
+                raise Exception('Invalid JSON data ' + e)
 
         elif "form-urlencoded" in content_type:
             request.payload = getattr(
@@ -301,7 +301,7 @@ class BaseController(object):
         return tuple(arglist)
 
     def auth_check(self, request, method):
-        if not hasattr(method, '_unauthenticated') and not request.user.is_authenticated():
+        if not hasattr(method, '_unauthenticated') and not request.user.is_authenticated:
             response = BaseView(request)
             return response.add_errors('401 -- Unauthorized', status=401).serialize()
 
