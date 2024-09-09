@@ -1,5 +1,5 @@
 # django
-from django.conf.urls import url
+from django.urls import re_path
 from django.contrib import admin
 # services
 
@@ -8,5 +8,5 @@ from services.apps.docgen.controllers import DocController
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'', DocController()),
+    re_path(r'', DocController()),
 ]

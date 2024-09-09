@@ -1,8 +1,8 @@
 
 
-from django.conf.urls import url
+from django.urls import re_path
 from controllers import AliveController
 
-urlpatterns = [url(r'^alive/?', AliveController()),
+urlpatterns = [re_path(r'^alive/?', AliveController()),
 
                ]

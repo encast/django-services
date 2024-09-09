@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.urls import patterns, include, re_path
 from services.apps.ops.controllers import StatusController, DeployController, HealthController, ErrorReportController
 urlpatterns = patterns('',
-                       url(r'^status/?$', StatusController()),
-                       url(r'^health/?$', HealthController()),
-                       url(r'^deploy/?$', DeployController()),
-                       url(r'^error/?$', ErrorReportController()),
+                       re_path(r'^status/?$', StatusController()),
+                       re_path(r'^health/?$', HealthController()),
+                       re_path(r'^deploy/?$', DeployController()),
+                       re_path(r'^error/?$', ErrorReportController()),
                        )
